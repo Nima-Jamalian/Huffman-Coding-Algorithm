@@ -94,12 +94,8 @@ public class Huffman {
 
     while (queue.size() > 1) {
 
-      Node x = queue.peek();
-      queue.poll();
-
-      Node y = queue.peek();
-      queue.poll();
-
+      Node x = queue.poll();
+      Node y = queue.poll();
       Node temp = new Node();
 
       temp.f = x.f + y.f;

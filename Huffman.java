@@ -74,7 +74,7 @@ public class Huffman {
 
     int n = 4;
     char[] input = { 'A', 'B', 'C', 'D' };
-    int[] InputCharFrequency = { 5, 1, 6, 3 };
+    int[] inputCharFrequency = { 5, 1, 6, 3 };
 
     PriorityQueue<Node> queue = new PriorityQueue<Node>(n, new MyComparator());
 
@@ -82,7 +82,7 @@ public class Huffman {
       Node node = new Node();
 
       node.c = input[i];
-      node.f = InputCharFrequency[i];
+      node.f = inputCharFrequency[i];
 
       node.left = null;
       node.right = null;
@@ -109,18 +109,29 @@ public class Huffman {
       root = temp;
       queue.add(temp);
     }
+
+    System.out.println();
+    PrintCharAndFreq(input, inputCharFrequency);
+    System.out.println();
     System.out.println(" Char | Huffman code ");
     System.out.println("--------------------");
-    printCode(root, "");
+    PrintCode(root, "");
   }
-  public static void printCode(Node root, String s) {
+  private static void PrintCode(Node root, String s) {
     if (root.left == null && root.right == null && Character.isLetter(root.c)) {
-
       System.out.println(root.c + "   |  " + s);
 
       return;
     }
-    printCode(root.left, s + "0");
-    printCode(root.right, s + "1");
+    PrintCode(root.left, s + "0");
+    PrintCode(root.right, s + "1");
+  }
+
+  private static void PrintCharAndFreq(char[] input,int[] frequency){
+    System.out.print(" Char and Frequency = ");
+    for(int i=0; i<input.length;i++){
+        System.out.print(" " +  frequency[i] + input[i]);
+    }
+    System.out.println();
   }
 }
